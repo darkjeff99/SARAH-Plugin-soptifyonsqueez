@@ -1,0 +1,47 @@
+﻿<grammar version="1.0" xml:lang="fr-FR" mode="voice"  root="ruleSqueezspoti" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+
+  <rule id="ruleSqueezspoti" > 
+      <tag>out.action=new Object(); </tag>
+      <item>Sarah</item>
+      <one-of>
+        <item><ruleref uri="#ruleSqueezspotilaunch"/><tag>out.action= rules.ruleSqueezspotilaunch;</tag></item>
+        <item><ruleref uri="#ruleSqueezspotiUpdate"/><tag>out.action= rules.ruleSqueezspotiUpdate;</tag></item>
+      </one-of>
+      <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/spotifyonsqueez";</tag>
+  </rule>
+
+  <rule id="ruleSqueezspotilaunch" > 
+      <one-of>
+        <item>lance la musique </item>
+        <item>lance la playliste</item>
+        <item>met la playliste</item>
+        <item>mais la playlist</item>
+        
+      </one-of>
+    <ruleref uri="#rulePlaylistName"/>
+  </rule>
+
+  <rule id="ruleSqueezspotiUpdate">
+    <tag>out.action="update";</tag> 
+      <one-of>
+        <item>mets à jour les playlistes<tag>out.action="update"</tag></item>
+      </one-of>
+  </rule>
+  
+<!-- Automatic Generation § -->
+<rule id="rulePlaylistName">
+  <one-of>
+     <item>a firm handshake – fix me up<tag>out.action="playlist";out.name="a firm handshake – fix me up";</tag></item>
+     <item>various artists – rebelle<tag>out.action="playlist";out.name="various artists – rebelle";</tag></item>
+     <item>céline<tag>out.action="playlist";out.name="céline";</tag></item>
+     <item>série<tag>out.action="playlist";out.name="série";</tag></item>
+     <item>k7<tag>out.action="playlist";out.name="k7";</tag></item>
+     <item>filles<tag>out.action="playlist";out.name="filles";</tag></item>
+     <item>fuel<tag>out.action="playlist";out.name="fuel";</tag></item>
+     <item>jeux<tag>out.action="playlist";out.name="jeux";</tag></item>
+     <item>reprise<tag>out.action="playlist";out.name="reprise";</tag></item>
+     <item>test<tag>out.action="playlist";out.name="test";</tag></item>
+  </one-of>
+</rule>
+<!-- § Automatic Generation -->
+</grammar>
