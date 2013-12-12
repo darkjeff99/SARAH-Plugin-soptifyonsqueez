@@ -1,7 +1,7 @@
 exports.action = function(data, callback, config, SARAH){
 // CONFIG
  name= data.name;
-   
+ var answers = config.answers;  
   config = config.modules.spotifyonsqueez; 
   if (!config.ip){ 
     console.log("Missing squeezebox config");
@@ -11,11 +11,11 @@ exports.action = function(data, callback, config, SARAH){
   if (!config.portSpotify){ 
     console.log("Missing squeezebox config");
     callback({'tts' : 'Il manque la configuration du port'});
-    return; 
+    return;  
   }
  
   if ( data.action == 'playlist') { 
-  		launchPlaylsit( name, callback, config);    
+  		launchPlaylsit( name, callback, config, answers);    
   }
   else if ( data.action == 'update') { 
       
@@ -38,7 +38,7 @@ var sendURL = function(url, callback, cb){
   }); 
 }  
  
-var launchPlaylsit = function(name, callback, config){ 
+var launchPlaylsit = function(name, callback, config, answers){ 
 		var name = name.toLowerCase();     
 		var trouve = false;  
 		console.log('Lancement de la playsliste spotify :'+name);
@@ -50,7 +50,7 @@ var launchPlaylsit = function(name, callback, config){
 							var listName = json.playlists[i].name.toLowerCase();
 						    if ( listName == name) { 
 						        trouve = true;
-						        playUri(json.playlists[i].uri, callback,config);
+						        playUri(json.playlists[i].uri, callback,config, answers);
 						       
 						     }  
 						} 
@@ -65,7 +65,10 @@ var launchPlaylsit = function(name, callback, config){
 var playUri = function (uri, callback, config){
 	 var url = 'http://'+config.ip+':'+config.portSqueezeServer+'/status.xml?player=00:04:20:1e:6d:b2&p0=playlist&p1=play&p2='+uri;
 	 sendURL(url, callback, function(){}); 
-  	 callback({'tts' : "C'est fait"}); 
+  	var answers = config.answers.split('|');
+    var answer = answers[ Math.floor(Math.random() * answers.length)];
+  console.log(answer);
+    callback({'tts': answer}) 
 }
 
  // ------------------------------------------

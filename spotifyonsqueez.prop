@@ -2,11 +2,12 @@
   "modules" : { 
     "spotifyonsqueez"  : {
       "description": "Utilisation spotify sur squeezebox",
-      "version"    : "0.1",
-      "ip"     : "192.168.0.11",
+      "version"    : "0.2",
+       "answers"    : "Je m'en occupe !|Voilà qui est fait !|C'est fait !|Voilà !|Tout de suite !",
+      "ip"     : "[Ip du serveur logitech]",
     "portSqueezeServer"     : "9000",
 	  "portSpotify"     : "9005",
-	  "utilisateur"     : "Username spotify"
+	  "utilisateur"     : "[login Spotify]"
     }
   }
 }

@@ -1,4 +1,4 @@
-﻿<grammar version="1.0" xml:lang="fr-FR" mode="voice"  root="ruleSqueezspoti" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+<grammar version="1.0" xml:lang="fr-FR" mode="voice"  root="ruleSqueezspoti" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
 
   <rule id="ruleSqueezspoti" > 
       <tag>out.action=new Object(); </tag>
@@ -31,6 +31,8 @@
 <!-- Automatic Generation § -->
 <rule id="rulePlaylistName">
   <one-of>
+     <item>noel<tag>out.action="playlist";out.name="noel";</tag></item>
+     <item>st nicolas<tag>out.action="playlist";out.name="st nicolas";</tag></item>
      <item>a firm handshake – fix me up<tag>out.action="playlist";out.name="a firm handshake – fix me up";</tag></item>
      <item>various artists – rebelle<tag>out.action="playlist";out.name="various artists – rebelle";</tag></item>
      <item>céline<tag>out.action="playlist";out.name="céline";</tag></item>
