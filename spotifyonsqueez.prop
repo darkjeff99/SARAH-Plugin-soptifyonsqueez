@@ -1,4 +1,14 @@
 {
+"cron" : {
+    "update_playlist"  : {
+      "name"       : "Update Playlist",
+      "description": "Update des playlists sopitfy",
+      "version"    : "0.1",
+      "y"           : "3",
+      "w"           : "2",
+      "time"        : "*/10 * * * *"
+    }
+  },
   "modules" : { 
     "spotifyonsqueez"  : {
       "description": "Utilisation spotify sur squeezebox",
@@ -7,7 +17,8 @@
       "ip"     : "[Ip du serveur logitech]",
     "portSqueezeServer"     : "9000",
 	  "portSpotify"     : "9005",
-	  "utilisateur"     : "[login Spotify]"
+	  "utilisateur"     : "[login Spotify]",
+    "squeezeboxPricipale" : "00:04:20:1e:6d:b2"
     }
   }
 }

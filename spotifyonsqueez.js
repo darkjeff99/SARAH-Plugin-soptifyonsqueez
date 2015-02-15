@@ -17,14 +17,20 @@ exports.action = function(data, callback, config, SARAH){
   if ( data.action == 'playlist') { 
   		launchPlaylsit( name, callback, configM, answers);    
   }
-  else if ( data.action == 'update') { 
-      
-      update( callback, configM);    
+  else if ( data.action == 'update') {
+      update(callback, configM);    
   }
   else {
    		callback({'tts' : "Je ne sais pas faire"});
   	}      
-}   
+}
+
+exports.cron = function(callback, config, task){
+   console.log("Update des playlists");
+   update(callback, config.modules.spotifyonsqueez);
+  
+  callback({'tts': ""});
+} 
       
 var sendURL = function(url, callback, cb){ 
  	var request = require('request'); 
@@ -63,7 +69,7 @@ var launchPlaylsit = function(name, callback, config, answers){
 }
 
 var playUri = function (uri, callback, config){
-	 var url = 'http://'+config.ip+':'+config.portSqueezeServer+'/status.xml?player=00:04:20:1e:6d:b2&p0=playlist&p1=play&p2='+uri;
+	 var url = 'http://'+config.ip+':'+config.portSqueezeServer+'/status.xml?player='+config.squeezeboxPricipale+'&p0=playlist&p1=play&p2='+uri;
 	 sendURL(url, callback, function(){}); 
   	var answers = config.answers.split('|');
     var answer = answers[ Math.floor(Math.random() * answers.length)];
@@ -75,9 +81,10 @@ var playUri = function (uri, callback, config){
   //  UPDATING XML
   // ------------------------------------------
 
-var update = function(directory, callback, config){
+var update = function(callback, config){
+  
   var fs   = require('fs');
-  var file = directory + '/../plugins/spotifyonsqueez/spotifyonsqueez.xml';
+  var file = 'plugins/spotifyonsqueez/spotifyonsqueez.xml';
   var xml  = fs.readFileSync(file,'utf8');
   sendURL('http://'+config.ip+':'+config.portSpotify+'/playlists.json?user='+config.utilisateur, callback, function(body){ 
     var replace  = '§ -->\n';
@@ -91,6 +98,7 @@ var update = function(directory, callback, config){
     replace += '  </one-of>\n';
     replace += '</rule>\n';  
     replace += '<!-- §';
+    console.log('maj ok'); 
     var regexp = new RegExp('§[^§]+§','gm');
     xml= xml.replace(regexp,replace);
     fs.writeFileSync(file, xml, 'utf8');

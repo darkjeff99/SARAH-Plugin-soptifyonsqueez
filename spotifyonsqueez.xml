@@ -31,18 +31,7 @@
 <!-- Automatic Generation § -->
 <rule id="rulePlaylistName">
   <one-of>
-     <item>noel<tag>out.action="playlist";out.name="noel";</tag></item>
-     <item>st nicolas<tag>out.action="playlist";out.name="st nicolas";</tag></item>
-     <item>a firm handshake – fix me up<tag>out.action="playlist";out.name="a firm handshake – fix me up";</tag></item>
-     <item>various artists – rebelle<tag>out.action="playlist";out.name="various artists – rebelle";</tag></item>
-     <item>céline<tag>out.action="playlist";out.name="céline";</tag></item>
-     <item>série<tag>out.action="playlist";out.name="série";</tag></item>
-     <item>k7<tag>out.action="playlist";out.name="k7";</tag></item>
-     <item>filles<tag>out.action="playlist";out.name="filles";</tag></item>
-     <item>fuel<tag>out.action="playlist";out.name="fuel";</tag></item>
-     <item>jeux<tag>out.action="playlist";out.name="jeux";</tag></item>
-     <item>reprise<tag>out.action="playlist";out.name="reprise";</tag></item>
-     <item>test<tag>out.action="playlist";out.name="test";</tag></item>
+
   </one-of>
 </rule>
 <!-- § Automatic Generation -->
