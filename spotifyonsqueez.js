@@ -2,24 +2,24 @@ exports.action = function(data, callback, config, SARAH){
 // CONFIG
  name= data.name;
  var answers = config.answers;  
-  config = config.modules.spotifyonsqueez; 
-  if (!config.ip){ 
+  configM = config.modules.spotifyonsqueez; 
+  if (!configM.ip){ 
     console.log("Missing squeezebox config");
     callback({'tts' : 'Il manque la configuration de l i p'});
     return;    
   }     
-  if (!config.portSpotify){ 
+  if (!configM.portSpotify){ 
     console.log("Missing squeezebox config");
     callback({'tts' : 'Il manque la configuration du port'});
     return;  
   }
  
   if ( data.action == 'playlist') { 
-  		launchPlaylsit( name, callback, config, answers);    
+  		launchPlaylsit( name, callback, configM, answers);    
   }
   else if ( data.action == 'update') { 
       
-      update( data.directory, callback, config);    
+      update( callback, configM);    
   }
   else {
    		callback({'tts' : "Je ne sais pas faire"});
@@ -76,9 +76,6 @@ var playUri = function (uri, callback, config){
   // ------------------------------------------
 
 var update = function(directory, callback, config){
-  if (!directory){ return; }
-  
-    console.log('maj ok'); 
   var fs   = require('fs');
   var file = directory + '/../plugins/spotifyonsqueez/spotifyonsqueez.xml';
   var xml  = fs.readFileSync(file,'utf8');
@@ -97,7 +94,6 @@ var update = function(directory, callback, config){
     var regexp = new RegExp('§[^§]+§','gm');
     xml= xml.replace(regexp,replace);
     fs.writeFileSync(file, xml, 'utf8');
-    console.log(replace);
     		 })
 
   callback({'tts' : "Voilà j'ai mis les playlist à jour"});

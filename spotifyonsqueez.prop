@@ -2,7 +2,7 @@
   "modules" : { 
     "spotifyonsqueez"  : {
       "description": "Utilisation spotify sur squeezebox",
-      "version"    : "0.2",
+      "version"    : "0.3",
        "answers"    : "Je m'en occupe !|Voilà qui est fait !|C'est fait !|Voilà !|Tout de suite !",
       "ip"     : "[Ip du serveur logitech]",
     "portSqueezeServer"     : "9000",
